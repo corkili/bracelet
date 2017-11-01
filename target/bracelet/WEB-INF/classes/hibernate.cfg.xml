@@ -5,6 +5,12 @@
 <hibernate-configuration>
     <session-factory>
         <!-- 注册映射文件 -->
-        <mapping class="org.bracelet.entity.Person"/>
+        <mapping class="org.bracelet.entity.User"/>
+        <mapping class="org.bracelet.entity.Food"/>
+        <mapping class="org.bracelet.entity.FoodType"/>
+        <mapping class="org.bracelet.entity.State"/>
+        <mapping class="org.bracelet.entity.SportState"/>
+        <mapping class="org.bracelet.entity.SleepState"/>
+        <mapping class="org.bracelet.entity.HeartState"/>
     </session-factory>
 </hibernate-configuration>
