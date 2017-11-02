@@ -5,8 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * Created by 李浩然
- * On 2017/8/7.
+ * 用户实体
  */
 @Entity
 @Table(name = "user")
@@ -73,7 +72,13 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @Transient
+    /**
+     * 用户饮食偏好
+     */
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_food",
+            joinColumns = {@JoinColumn(name = "userId")},
+            inverseJoinColumns = {@JoinColumn(name = "foodTypeId")})
     private List<FoodType> likeFoods;
 
     public Long getId() {
@@ -162,5 +167,60 @@ public class User {
 
     public void setLikeFoods(List<FoodType> likeFoods) {
         this.likeFoods = likeFoods;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthday=" + birthday +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", phone='" + phone + '\'' +
+                ", likeFoods=" + likeFoods +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
+        if (birthday != null ? !birthday.equals(user.birthday) : user.birthday != null) return false;
+        if (age != null ? !age.equals(user.age) : user.age != null) return false;
+        if (weight != null ? !weight.equals(user.weight) : user.weight != null) return false;
+        if (height != null ? !height.equals(user.height) : user.height != null) return false;
+        if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
+        if (likeFoods != null ? !likeFoods.equals(user.likeFoods) : user.likeFoods != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (weight != null ? weight.hashCode() : 0);
+        result = 31 * result + (height != null ? height.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (likeFoods != null ? likeFoods.hashCode() : 0);
+        return result;
     }
 }

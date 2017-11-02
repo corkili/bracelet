@@ -2,6 +2,9 @@ package org.bracelet.entity;
 
 import javax.persistence.*;
 
+/**
+ * 食物
+ */
 @Entity
 @Table(name = "food")
 public class Food {
@@ -388,35 +391,73 @@ public class Food {
     }
 
     @Override
-    public String toString() {
-        return "Food{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", heatContent=" + heatContent +
-                ", thiamine=" + thiamine +
-                ", calcium=" + calcium +
-                ", protein=" + protein +
-                ", riboflavin=" + riboflavin +
-                ", magnesium=" + magnesium +
-                ", fat=" + fat +
-                ", niacin=" + niacin +
-                ", iron=" + iron +
-                ", carbohydrate=" + carbohydrate +
-                ", vitaminC=" + vitaminC +
-                ", manganese=" + manganese +
-                ", dietaryFibre=" + dietaryFibre +
-                ", vitaminE=" + vitaminE +
-                ", zinc=" + zinc +
-                ", vitaminA=" + vitaminA +
-                ", cholesterol=" + cholesterol +
-                ", copper=" + copper +
-                ", carotene=" + carotene +
-                ", potassium=" + potassium +
-                ", phosphorus=" + phosphorus +
-                ", retinolEquivalent=" + retinolEquivalent +
-                ", sodium=" + sodium +
-                ", selenium=" + selenium +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Food)) return false;
+
+        Food food = (Food) o;
+
+        if (id != null ? !id.equals(food.id) : food.id != null) return false;
+        if (name != null ? !name.equals(food.name) : food.name != null) return false;
+        if (heatContent != null ? !heatContent.equals(food.heatContent) : food.heatContent != null) return false;
+        if (thiamine != null ? !thiamine.equals(food.thiamine) : food.thiamine != null) return false;
+        if (calcium != null ? !calcium.equals(food.calcium) : food.calcium != null) return false;
+        if (protein != null ? !protein.equals(food.protein) : food.protein != null) return false;
+        if (riboflavin != null ? !riboflavin.equals(food.riboflavin) : food.riboflavin != null) return false;
+        if (magnesium != null ? !magnesium.equals(food.magnesium) : food.magnesium != null) return false;
+        if (fat != null ? !fat.equals(food.fat) : food.fat != null) return false;
+        if (niacin != null ? !niacin.equals(food.niacin) : food.niacin != null) return false;
+        if (iron != null ? !iron.equals(food.iron) : food.iron != null) return false;
+        if (carbohydrate != null ? !carbohydrate.equals(food.carbohydrate) : food.carbohydrate != null) return false;
+        if (vitaminC != null ? !vitaminC.equals(food.vitaminC) : food.vitaminC != null) return false;
+        if (manganese != null ? !manganese.equals(food.manganese) : food.manganese != null) return false;
+        if (dietaryFibre != null ? !dietaryFibre.equals(food.dietaryFibre) : food.dietaryFibre != null) return false;
+        if (vitaminE != null ? !vitaminE.equals(food.vitaminE) : food.vitaminE != null) return false;
+        if (zinc != null ? !zinc.equals(food.zinc) : food.zinc != null) return false;
+        if (vitaminA != null ? !vitaminA.equals(food.vitaminA) : food.vitaminA != null) return false;
+        if (cholesterol != null ? !cholesterol.equals(food.cholesterol) : food.cholesterol != null) return false;
+        if (copper != null ? !copper.equals(food.copper) : food.copper != null) return false;
+        if (carotene != null ? !carotene.equals(food.carotene) : food.carotene != null) return false;
+        if (potassium != null ? !potassium.equals(food.potassium) : food.potassium != null) return false;
+        if (phosphorus != null ? !phosphorus.equals(food.phosphorus) : food.phosphorus != null) return false;
+        if (retinolEquivalent != null ? !retinolEquivalent.equals(food.retinolEquivalent) : food.retinolEquivalent != null)
+            return false;
+        if (sodium != null ? !sodium.equals(food.sodium) : food.sodium != null) return false;
+        if (selenium != null ? !selenium.equals(food.selenium) : food.selenium != null) return false;
+        if (foodType != null ? !foodType.equals(food.foodType) : food.foodType != null) return false;
+
+        return true;
     }
 
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (heatContent != null ? heatContent.hashCode() : 0);
+        result = 31 * result + (thiamine != null ? thiamine.hashCode() : 0);
+        result = 31 * result + (calcium != null ? calcium.hashCode() : 0);
+        result = 31 * result + (protein != null ? protein.hashCode() : 0);
+        result = 31 * result + (riboflavin != null ? riboflavin.hashCode() : 0);
+        result = 31 * result + (magnesium != null ? magnesium.hashCode() : 0);
+        result = 31 * result + (fat != null ? fat.hashCode() : 0);
+        result = 31 * result + (niacin != null ? niacin.hashCode() : 0);
+        result = 31 * result + (iron != null ? iron.hashCode() : 0);
+        result = 31 * result + (carbohydrate != null ? carbohydrate.hashCode() : 0);
+        result = 31 * result + (vitaminC != null ? vitaminC.hashCode() : 0);
+        result = 31 * result + (manganese != null ? manganese.hashCode() : 0);
+        result = 31 * result + (dietaryFibre != null ? dietaryFibre.hashCode() : 0);
+        result = 31 * result + (vitaminE != null ? vitaminE.hashCode() : 0);
+        result = 31 * result + (zinc != null ? zinc.hashCode() : 0);
+        result = 31 * result + (vitaminA != null ? vitaminA.hashCode() : 0);
+        result = 31 * result + (cholesterol != null ? cholesterol.hashCode() : 0);
+        result = 31 * result + (copper != null ? copper.hashCode() : 0);
+        result = 31 * result + (carotene != null ? carotene.hashCode() : 0);
+        result = 31 * result + (potassium != null ? potassium.hashCode() : 0);
+        result = 31 * result + (phosphorus != null ? phosphorus.hashCode() : 0);
+        result = 31 * result + (retinolEquivalent != null ? retinolEquivalent.hashCode() : 0);
+        result = 31 * result + (sodium != null ? sodium.hashCode() : 0);
+        result = 31 * result + (selenium != null ? selenium.hashCode() : 0);
+        result = 31 * result + (foodType != null ? foodType.hashCode() : 0);
+        return result;
+    }
 }

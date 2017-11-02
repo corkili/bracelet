@@ -3,6 +3,9 @@ package org.bracelet.entity;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * 食物类型
+ */
 @Entity
 @Table(name = "foodType")
 public class FoodType {
@@ -20,12 +23,6 @@ public class FoodType {
     @Column(name = "name", unique = true, nullable = false, length = 20)
     private String name;
 
-    /**
-     * 食物列表
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "foodType")
-    private List<Food> foods;
-
     public Long getId() {
         return id;
     }
@@ -42,20 +39,31 @@ public class FoodType {
         this.name = name;
     }
 
-    public List<Food> getFoods() {
-        return foods;
-    }
-
-    public void setFoods(List<Food> foods) {
-        this.foods = foods;
-    }
-
     @Override
     public String toString() {
         return "FoodType{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", foods=" + foods +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FoodType)) return false;
+
+        FoodType foodType = (FoodType) o;
+
+        if (id != null ? !id.equals(foodType.id) : foodType.id != null) return false;
+        if (name != null ? !name.equals(foodType.name) : foodType.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }
