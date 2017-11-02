@@ -5,7 +5,7 @@
   <artifactId>bracelet</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>ssh Maven Webapp</name>
+  <name>bracelet Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -21,6 +21,7 @@
     <log4jVersion>1.2.17</log4jVersion>
     <fileuploadVersion>1.3.1</fileuploadVersion>
     <lombokVersion>1.16.10</lombokVersion>
+    <jsoupVersion>1.10.3</jsoupVersion>
   </properties>
 
   <dependencies>
@@ -162,6 +163,13 @@
       <artifactId>lombok</artifactId>
       <version>${lombokVersion}</version>
       <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoupVersion}</version>
     </dependency>
 
   </dependencies>

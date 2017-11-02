@@ -26,7 +26,7 @@ public class Food {
      * 热量（千卡/100g）
      */
     @Column(name = "heatContent", scale = 2)
-    private Integer heatContent;
+    private Double heatContent;
 
     /**
      * 硫胺素（毫克/100g）
@@ -190,11 +190,11 @@ public class Food {
         this.name = name;
     }
 
-    public Integer getHeatContent() {
+    public Double getHeatContent() {
         return heatContent;
     }
 
-    public void setHeatContent(Integer heatContent) {
+    public void setHeatContent(Double heatContent) {
         this.heatContent = heatContent;
     }
 
@@ -388,6 +388,39 @@ public class Food {
 
     public void setFoodType(FoodType foodType) {
         this.foodType = foodType;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", heatContent=" + heatContent +
+                ", thiamine=" + thiamine +
+                ", calcium=" + calcium +
+                ", protein=" + protein +
+                ", riboflavin=" + riboflavin +
+                ", magnesium=" + magnesium +
+                ", fat=" + fat +
+                ", niacin=" + niacin +
+                ", iron=" + iron +
+                ", carbohydrate=" + carbohydrate +
+                ", vitaminC=" + vitaminC +
+                ", manganese=" + manganese +
+                ", dietaryFibre=" + dietaryFibre +
+                ", vitaminE=" + vitaminE +
+                ", zinc=" + zinc +
+                ", vitaminA=" + vitaminA +
+                ", cholesterol=" + cholesterol +
+                ", copper=" + copper +
+                ", carotene=" + carotene +
+                ", potassium=" + potassium +
+                ", phosphorus=" + phosphorus +
+                ", retinolEquivalent=" + retinolEquivalent +
+                ", sodium=" + sodium +
+                ", selenium=" + selenium +
+                ", foodType=" + foodType +
+                '}';
     }
 
     @Override
