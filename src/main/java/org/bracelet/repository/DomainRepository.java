@@ -7,7 +7,6 @@ import java.util.List;
  * Created by 李浩然 on 2017/8/7.
  */
 public interface DomainRepository<T, PK extends Serializable> {
-    T load(PK id);
 
     T get(PK id);
 
@@ -21,5 +20,5 @@ public interface DomainRepository<T, PK extends Serializable> {
 
     void delete(PK id);
 
-    void flush();
+    void delete(T entity);
 }

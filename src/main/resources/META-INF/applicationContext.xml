@@ -46,6 +46,7 @@
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <!-- 在控制台显示执行的数据库操作语句（格式） -->
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
             </props>
         </property>
     </bean>
