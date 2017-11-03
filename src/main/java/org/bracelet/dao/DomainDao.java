@@ -1,4 +1,4 @@
-package org.bracelet.repository;
+package org.bracelet.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by 李浩然 on 2017/8/7.
  */
-public interface DomainRepository<T, PK extends Serializable> {
+public interface DomainDao<T, PK extends Serializable> {
 
     T get(PK id);
 
@@ -21,4 +21,6 @@ public interface DomainRepository<T, PK extends Serializable> {
     void delete(PK id);
 
     void delete(T entity);
+
+    List<T> batchSave(List<T> entities);
 }

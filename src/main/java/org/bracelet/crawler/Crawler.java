@@ -1,5 +1,7 @@
 package org.bracelet.crawler;
 
+import org.bracelet.dao.FoodDao;
+import org.bracelet.dao.impl.FoodDaoImpl;
 import org.bracelet.entity.Food;
 import org.bracelet.entity.FoodType;
 import org.jsoup.Jsoup;
@@ -12,25 +14,20 @@ import java.util.*;
 
 public class Crawler {
 
-    /*
-        #mainbox > div.leftbox > div:nth-child(2) > div.mcon > p:nth-child(3) > a:nth-child(3)
-        #mainbox > div.leftbox > div:nth-child(2) > div.mcon > ul > li:nth-child(1) > a
-     */
-    private String baseUrl = "http://yingyang.118cha.com/";
-
     private Map<FoodType, List<Food>> foodTypeListMap;
 
-    public Crawler() {
-        foodTypeListMap = new HashMap<FoodType, List<Food>>();
+    private Crawler() {
+        foodTypeListMap = new HashMap<>();
     }
 
-    public void craw() throws IOException {
+    private void craw() throws IOException {
+        String baseUrl = "http://yingyang.118cha.com/";
         Document document = Jsoup.connect(baseUrl)
                 .userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)")
                 .get();
         Elements listAElements = document.select("#mainbox").select("div.leftbox")
                 .select("div:nth-child(2)").select("div.mcon").select("p:nth-child(3)").select("a");
-        Map<String, String> listMap = new HashMap<String, String>();
+        Map<String, String> listMap = new HashMap<>();
 
         for (Element listAElement : listAElements) {
             listMap.put(listAElement.text(), baseUrl + listAElement.attr("href"));
@@ -50,7 +47,7 @@ public class Crawler {
             Elements foodAElements = document.select("#mainbox").select("div.leftbox")
                     .select("div:nth-child(2)").select("div.mcon").select("ul").select("li");
 
-            List<Food> foods = new ArrayList<Food>();
+            List<Food> foods = new ArrayList<>();
 
             for (Element foodAElement : foodAElements) {
                 String foodName = foodAElement.select("a").text();
@@ -124,5 +121,10 @@ public class Crawler {
     public static void main(String[] args) throws IOException {
         Crawler crawler = new Crawler();
         crawler.craw();
+        List<Food> foods = new ArrayList<>();
+        for (List<Food> foodList : crawler.foodTypeListMap.values()) {
+            foods.addAll(foodList);
+        }
+        System.out.println("done!");
     }
 }

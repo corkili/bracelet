@@ -1,6 +1,6 @@
-package org.bracelet.repository.impl;
+package org.bracelet.dao.impl;
 
-import org.bracelet.repository.DomainRepository;
+import org.bracelet.dao.DomainDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,22 +16,25 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class DomainRepositoryImpl<T, PK extends Serializable> implements DomainRepository<T, PK> {
+public abstract class DomainDaoImpl<T, PK extends Serializable> implements DomainDao<T, PK> {
 
     private Class<T> entityClass;
 
     private SessionFactory sessionFactory;
 
-    protected final Session getCurrentSession() {
+    final Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
-    public DomainRepositoryImpl() {
+    @SuppressWarnings("unchecked")
+    public DomainDaoImpl() {
         Type genType = getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
         entityClass = (Class) params[0];
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
     public T get(PK id) {
         Session session;
         Transaction transaction = null;
@@ -49,10 +52,12 @@ public class DomainRepositoryImpl<T, PK extends Serializable> implements DomainR
         return t;
     }
 
+    @Override
     public List<T> findAll() {
-        return new ArrayList<T>();
+        return new ArrayList<>();
     }
 
+    @Override
     public void persist(T entity) {
         Session session;
         Transaction transaction = null;
@@ -68,6 +73,8 @@ public class DomainRepositoryImpl<T, PK extends Serializable> implements DomainR
         }
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
     public PK save(T entity) {
         Session session;
         Transaction transaction = null;
@@ -85,6 +92,7 @@ public class DomainRepositoryImpl<T, PK extends Serializable> implements DomainR
         return pk;
     }
 
+    @Override
     public void saveOrUpdate(T entity) {
         Session session;
         Transaction transaction = null;
@@ -100,6 +108,8 @@ public class DomainRepositoryImpl<T, PK extends Serializable> implements DomainR
         }
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
     public void delete(PK id) {
         Session session;
         Transaction transaction = null;
@@ -119,6 +129,7 @@ public class DomainRepositoryImpl<T, PK extends Serializable> implements DomainR
         }
     }
 
+    @Override
     public void delete(T entity) {
         Session session;
         Transaction transaction = null;
@@ -132,6 +143,31 @@ public class DomainRepositoryImpl<T, PK extends Serializable> implements DomainR
                 transaction.rollback();
             }
         }
+    }
+
+    @Override
+    public List<T> batchSave(List<T> entities) {
+        List<T> errorEntities = new ArrayList<>();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            for (int i = 0; i < entities.size(); i++) {
+                if (session.save(entities.get(i)) == null) {
+                    errorEntities.add(entities.get(i));
+                }
+                if (i % 10 == 0) {
+                    session.flush();
+                    session.clear();
+                }
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        entities.removeAll(errorEntities);
+        return errorEntities;
     }
 
     @Autowired

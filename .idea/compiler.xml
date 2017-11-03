@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bracelet" target="1.5" />
+      <module name="bracelet" target="1.9" />
       <module name="ssh" target="1.5" />
     </bytecodeTargetLevel>
   </component>

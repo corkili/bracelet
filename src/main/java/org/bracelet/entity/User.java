@@ -97,8 +97,8 @@ public class User {
     private List<User> friends;
 
     public User() {
-        likeFoods = new ArrayList<FoodType>();
-        friends = new ArrayList<User>();
+        likeFoods = new ArrayList<>();
+        friends = new ArrayList<>();
         this.weight = 0.0;
         this.height = 0.0;
     }
