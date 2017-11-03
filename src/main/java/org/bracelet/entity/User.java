@@ -2,6 +2,7 @@ package org.bracelet.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,25 +22,25 @@ public class User {
     /**
      * 用户名
      */
-    @Column(name = "username")
+    @Column(name = "username", length = 128, nullable = false)
     private String username;
 
     /**
      * 用户口令
      */
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     /**
      * 姓名
      */
-    @Column(name = "name")
+    @Column(name = "name", length = 64)
     private String name;
 
     /**
      * 性别
      */
-    @Column(name = "sex")
+    @Column(name = "sex", length = 10)
     private String sex;
 
     /**
@@ -69,8 +70,16 @@ public class User {
     /**
      * 手机号
      */
-    @Column(name = "phone")
+    @Column(name = "phone", length = 20, unique = true, nullable = false)
     private String phone;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "registerTime")
+    private java.util.Date registerTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "lastLoginTime")
+    private java.util.Date lastLoginTime;
 
     /**
      * 用户饮食偏好
@@ -80,6 +89,19 @@ public class User {
             joinColumns = {@JoinColumn(name = "userId")},
             inverseJoinColumns = {@JoinColumn(name = "foodTypeId")})
     private List<FoodType> likeFoods;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "friends",
+            joinColumns = {@JoinColumn(name = "userId")},
+            inverseJoinColumns = {@JoinColumn(name = "friendId")})
+    private List<User> friends;
+
+    public User() {
+        likeFoods = new ArrayList<FoodType>();
+        friends = new ArrayList<User>();
+        this.weight = 0.0;
+        this.height = 0.0;
+    }
 
     public Long getId() {
         return id;
@@ -169,6 +191,30 @@ public class User {
         this.likeFoods = likeFoods;
     }
 
+    public java.util.Date getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(java.util.Date registerTime) {
+        this.registerTime = registerTime;
+    }
+
+    public java.util.Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(java.util.Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -182,7 +228,10 @@ public class User {
                 ", weight=" + weight +
                 ", height=" + height +
                 ", phone='" + phone + '\'' +
+                ", registerTime=" + registerTime +
+                ", lastLoginTime=" + lastLoginTime +
                 ", likeFoods=" + likeFoods +
+                ", friends=" + friends +
                 '}';
     }
 
@@ -203,7 +252,11 @@ public class User {
         if (weight != null ? !weight.equals(user.weight) : user.weight != null) return false;
         if (height != null ? !height.equals(user.height) : user.height != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
+        if (registerTime != null ? !registerTime.equals(user.registerTime) : user.registerTime != null) return false;
+        if (lastLoginTime != null ? !lastLoginTime.equals(user.lastLoginTime) : user.lastLoginTime != null)
+            return false;
         if (likeFoods != null ? !likeFoods.equals(user.likeFoods) : user.likeFoods != null) return false;
+        if (friends != null ? !friends.equals(user.friends) : user.friends != null) return false;
 
         return true;
     }
@@ -220,7 +273,10 @@ public class User {
         result = 31 * result + (weight != null ? weight.hashCode() : 0);
         result = 31 * result + (height != null ? height.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (registerTime != null ? registerTime.hashCode() : 0);
+        result = 31 * result + (lastLoginTime != null ? lastLoginTime.hashCode() : 0);
         result = 31 * result + (likeFoods != null ? likeFoods.hashCode() : 0);
+        result = 31 * result + (friends != null ? friends.hashCode() : 0);
         return result;
     }
 }

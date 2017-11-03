@@ -14,7 +14,7 @@ public class SportState extends State{
     /**
      * 运动状态的类型（步行、跑步）
      */
-    @Column(name = "sportType")
+    @Column(name = "sportType", length = 20)
     private String sportType;
 
     /**

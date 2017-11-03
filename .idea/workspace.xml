@@ -7,13 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f47efaf-71de-47e4-9a31-9680f1cffb34" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jsoup_jsoup_1_10_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/bracelet/crawler/Crawler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/bracelet_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/bracelet_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bracelet/repository/DomainRepository.class" afterPath="$PROJECT_DIR$/target/classes/org/bracelet/repository/DomainRepository.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bracelet.iml" afterPath="$PROJECT_DIR$/bracelet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/Food.java" afterPath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/Food.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SleepState.java" afterPath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SleepState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SportState.java" afterPath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SportState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/State.java" afterPath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/State.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/org/bracelet/entity/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/META-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/target/classes/META-INF/applicationContext.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,26 +27,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Food.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/Food.java">
+      <file leaf-file-name="State.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/State.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="393" column="18" lean-forward="false" selection-start-line="393" selection-start-column="18" selection-end-line="393" selection-end-column="18" />
+            <state relative-caret-position="493">
+              <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Crawler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/crawler/Crawler.java">
+      <file leaf-file-name="SportState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/SportState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="114" column="19" lean-forward="false" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1152#1168#0" expanded="true" />
-                <element signature="e#2005#2011#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="322">
+              <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SleepState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/SleepState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeartState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/HeartState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="562">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FoodType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/FoodType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="838">
+              <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,11 +125,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/bracelet/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/FoodType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/State.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SleepState.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SportState.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/HeartState.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/bracelet/repository/impl/DomainRepository.java" />
@@ -110,6 +133,10 @@
         <option value="$PROJECT_DIR$/src/main/java/org/bracelet/repository/impl/DomainRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/bracelet/crawler/Crawler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SleepState.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/SportState.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/State.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/bracelet/entity/Food.java" />
       </list>
     </option>
@@ -177,8 +204,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -225,8 +252,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -775,7 +802,8 @@
       <workItem from="1509515023988" duration="447000" />
       <workItem from="1509540524933" duration="2248000" />
       <workItem from="1509609907979" duration="4131000" />
-      <workItem from="1509631731590" duration="6260000" />
+      <workItem from="1509631731590" duration="6345000" />
+      <workItem from="1509709797185" duration="1177000" />
     </task>
     <task id="LOCAL-00001" summary="version 0.1, add some entities">
       <created>1509549706419</created>
@@ -798,11 +826,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509614086187</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="version 0.4, override toString() method in Food class, add a crawler to get information of food.">
+      <created>1509638317006</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1509638317006</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25799000" />
+    <option name="totallyTimeSpent" value="27061000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -828,19 +863,17 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28089887" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18876405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18876405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26233906" sideWeight="0.5078652" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26609442" sideWeight="0.5078652" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28809014" sideWeight="0.49213484" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -849,7 +882,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28089887" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -897,7 +932,8 @@
     <MESSAGE value="version 0.1, add some entities" />
     <MESSAGE value="version 0.2, finish entity package" />
     <MESSAGE value="version 0.3, finish DomainRepositoryImpl and DomainRepository" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 0.3, finish DomainRepositoryImpl and DomainRepository" />
+    <MESSAGE value="version 0.4, override toString() method in Food class, add a crawler to get information of food." />
+    <option name="LAST_COMMIT_MESSAGE" value="version 0.4, override toString() method in Food class, add a crawler to get information of food." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1035,56 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/FoodType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-222">
-          <caret line="95" column="37" lean-forward="false" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/HeartState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/SportState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/SleepState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1118,9 +1104,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
           <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1128,36 +1111,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="22" column="26" lean-forward="false" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="192" column="0" lean-forward="false" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/crawler/Crawler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="2392">
           <caret line="114" column="19" lean-forward="false" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1152#1168#0" expanded="true" />
-            <element signature="e#2005#2011#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1367">
+          <caret line="96" column="31" lean-forward="false" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/SportState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/SleepState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/HeartState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/FoodType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="838">
+          <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/Food.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="393" column="18" lean-forward="false" selection-start-line="393" selection-start-column="18" selection-end-line="393" selection-end-column="18" />
+        <state relative-caret-position="194">
+          <caret line="177" column="31" lean-forward="true" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/bracelet/entity/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
           <folding />
         </state>
       </provider>

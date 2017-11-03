@@ -14,7 +14,7 @@ public class SleepState extends State {
     /**
      * 睡眠类型（深睡眠或浅睡眠）
      */
-    @Column(name = "sleepType")
+    @Column(name = "sleepType", length = 20)
     private String sleepType;
 
     public String getSleepType() {

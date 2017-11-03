@@ -22,16 +22,21 @@ public class State {
     /**
      * 状态起始时间
      */
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "startTime", nullable = false)
     private Date startTime;
 
     /**
      * 状态终止时间
      */
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "entTime", nullable = false)
     private Date endTime;
 
     /**
      * 状态类型（sport、heart、sleep）
      */
+    @Column(name = "status", length = 20, nullable = false)
     private String status;
 
     /**

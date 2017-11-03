@@ -174,6 +174,33 @@ public class Food {
     @JoinColumn(name = "foodTypeId")
     private FoodType foodType;
 
+    public Food() {
+        this.heatContent = 0.0;
+        this.thiamine = 0.0;
+        this.calcium = 0.0;
+        this.protein = 0.0;
+        this.riboflavin = 0.0;
+        this.magnesium = 0.0;
+        this.fat = 0.0;
+        this.niacin = 0.0;
+        this.iron = 0.0;
+        this.carbohydrate = 0.0;
+        this.vitaminC = 0.0;
+        this.manganese = 0.0;
+        this.dietaryFibre = 0.0;
+        this.vitaminE = 0.0;
+        this.zinc = 0.0;
+        this.vitaminA = 0.0;
+        this.cholesterol = 0.0;
+        this.copper = 0.0;
+        this.carotene = 0.0;
+        this.potassium = 0.0;
+        this.phosphorus = 0.0;
+        this.retinolEquivalent = 0.0;
+        this.sodium = 0.0;
+        this.selenium = 0.0;
+    }
+
     public Long getId() {
         return id;
     }
