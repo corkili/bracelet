@@ -106,6 +106,8 @@ public class User {
         this.friends = new ArrayList<>();
         this.weight = 0.0;
         this.height = 0.0;
+        this.age = 0;
+        this.sex = "男";
     }
 
     public User(String jsonString) {

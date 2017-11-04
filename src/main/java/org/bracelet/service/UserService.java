@@ -11,4 +11,12 @@ public interface UserService {
     void logout(long userId, HttpSession session);
 
     Result register(User user);
+
+    User getUser(long userId);
+
+    User getUser(String phone);
+
+    void modifyUserInformation(User user);
+
+    Result modifyPassword(String phone, String password);
 }

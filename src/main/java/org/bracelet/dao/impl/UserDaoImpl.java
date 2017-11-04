@@ -34,6 +34,26 @@ public class UserDaoImpl extends DomainDaoImpl<User, Long> implements UserDao {
     }
 
     @Override
+    public boolean existUser(String phone) {
+        Session session;
+        Transaction transaction = null;
+        boolean isExist;
+        try {
+            session = getCurrentSession();
+            transaction = session.beginTransaction();
+            isExist = ((Number)session.createQuery(" select count(u) from User u where u.phone = :phone")
+                    .setParameter("phone", phone).uniqueResult()).intValue() != 0;
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            isExist = true;
+        }
+        return isExist;
+    }
+
+    @Override
     public long count() {
         Session session;
         Transaction transaction = null;
