@@ -1,5 +1,8 @@
 package org.bracelet.entity;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,6 +26,16 @@ public class FoodType {
     @Column(name = "name", unique = true, nullable = false, length = 20)
     private String name;
 
+    public FoodType() {
+
+    }
+
+    public FoodType(String jsonString) {
+        JSONObject json = JSONObject.fromString(jsonString);
+        this.id = json.getLong("id");
+        this.name = json.getString("name");
+    }
+
     public Long getId() {
         return id;
     }
@@ -41,10 +54,9 @@ public class FoodType {
 
     @Override
     public String toString() {
-        return "FoodType{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        JSONObject json = new JSONObject();
+        json.put("id", id).put("name", name);
+        return json.toString();
     }
 
     @Override

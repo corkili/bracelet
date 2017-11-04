@@ -172,6 +172,18 @@
       <version>${jsoupVersion}</version>
     </dependency>
 
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sf.json-lib</groupId>
+      <artifactId>json-lib</artifactId>
+      <version>0.9</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>bracelet</finalName>

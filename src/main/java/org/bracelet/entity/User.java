@@ -1,8 +1,13 @@
 package org.bracelet.entity;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -97,10 +102,43 @@ public class User {
     private List<User> friends;
 
     public User() {
-        likeFoods = new ArrayList<>();
-        friends = new ArrayList<>();
+        this.likeFoods = new ArrayList<>();
+        this.friends = new ArrayList<>();
         this.weight = 0.0;
         this.height = 0.0;
+    }
+
+    public User(String jsonString) {
+        JSONObject json = JSONObject.fromString(jsonString);
+        this.id = json.getLong("id");
+        this.username = json.getString("username");
+        this.name = json.getString("name");
+        this.birthday = new Date(json.getLong("birthday"));
+        this.age = json.getInt("age");
+        this.weight = json.getDouble("weight");
+        this.height = json.getDouble("height");
+        this.phone = json.getString("phone");
+        this.registerTime = new java.util.Date(json.getLong("registerTime"));
+        this.lastLoginTime = new java.util.Date(json.getLong("lastLoginTime"));
+        this.likeFoods = new ArrayList<>();
+        JSONArray foodArray = json.getJSONArray("likeFoods");
+        for (Iterator it = foodArray.iterator(); it.hasNext(); ) {
+            likeFoods.add(new FoodType(((JSONObject) it.next()).toString()));
+        }
+        this.friends = new ArrayList<>();
+        JSONArray friendArray = json.getJSONArray("friends");
+        for (Iterator it = friendArray.iterator(); it.hasNext(); ) {
+            JSONObject friend = (JSONObject) it.next();
+            User user = new User();
+            user.setId(friend.getLong("id"));
+            user.setUsername(friend.getString("username"));
+            user.setName(friend.getString("name"));
+            user.setSex(friend.getString("sex"));
+            user.setBirthday(new Date(friend.getLong("birthday")));
+            user.setAge(friend.getInt("age"));
+            user.setPhone(friend.getString("phone"));
+            friends.add(user);
+        }
     }
 
     public Long getId() {
@@ -217,22 +255,38 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", birthday=" + birthday +
-                ", age=" + age +
-                ", weight=" + weight +
-                ", height=" + height +
-                ", phone='" + phone + '\'' +
-                ", registerTime=" + registerTime +
-                ", lastLoginTime=" + lastLoginTime +
-                ", likeFoods=" + likeFoods +
-                ", friends=" + friends +
-                '}';
+        JSONObject json = new JSONObject();
+        json.put("id", id)
+                .put("username", username)
+                .put("name", name)
+                .put("sex", sex)
+                .put("birthday", birthday.getTime())
+                .put("age", age)
+                .put("weight", weight)
+                .put("height", height)
+                .put("phone", phone)
+                .put("registerTime", registerTime.getTime())
+                .put("lastLoginTime", lastLoginTime.getTime());
+        JSONArray foodArray = new JSONArray();
+        for (FoodType foodType : likeFoods) {
+            foodArray.put(JSONObject.fromString(foodType.toString()));
+        }
+        json.put("likeFoods", foodArray);
+
+        JSONArray friendArray = new JSONArray();
+        for (User user : friends) {
+            JSONObject u = new JSONObject();
+            u.put("id", user.getId())
+                    .put("username", user.getUsername())
+                    .put("name", user.getName())
+                    .put("sex", user.getSex())
+                    .put("birthday", user.getBirthday().getTime())
+                    .put("age", user.getAge())
+                    .put("phone", user.getPhone());
+            friendArray.put(u);
+        }
+        json.put("friends", friendArray);
+        return json.toString();
     }
 
     @Override

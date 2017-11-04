@@ -1,5 +1,7 @@
 package org.bracelet.entity;
 
+import net.sf.json.JSONObject;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -17,6 +19,16 @@ public class HeartState extends State {
     @Column(name = "times")
     private Integer times;
 
+    public HeartState() {
+
+    }
+
+    public HeartState(String jsonString, User user) {
+        super(jsonString, user);
+        JSONObject json = JSONObject.fromString(jsonString);
+        this.times = json.getInt("times");
+    }
+
     public Integer getTimes() {
         return times;
     }
@@ -27,9 +39,9 @@ public class HeartState extends State {
 
     @Override
     public String toString() {
-        return "HeartState{" +
-                "times=" + times +
-                "} " + super.toString();
+        JSONObject json = JSONObject.fromString(super.toString());
+        json.put("times", times);
+        return json.toString();
     }
 
     @Override

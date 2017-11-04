@@ -1,5 +1,7 @@
 package org.bracelet.entity;
 
+import net.sf.json.JSONObject;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -46,6 +48,19 @@ public class State {
     @JoinColumn(name = "userId")
     private User user;
 
+    public State() {
+
+    }
+
+    public State(String jsonString, User user) {
+        JSONObject json = JSONObject.fromString(jsonString);
+        this.id = json.getLong("id");
+        this.startTime = new Date(json.getLong("startTime"));
+        this.endTime = new Date(json.getLong("endTime"));
+        this.status = json.getString("status");
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
@@ -88,13 +103,12 @@ public class State {
 
     @Override
     public String toString() {
-        return "State{" +
-                "id=" + id +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", status='" + status + '\'' +
-                ", user=" + user +
-                '}';
+        JSONObject json = new JSONObject();
+        json.put("id", id)
+                .put("startTime", startTime.getTime())
+                .put("endTime", endTime.getTime())
+                .put("status", status);
+        return json.toString();
     }
 
     @Override

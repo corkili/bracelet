@@ -1,5 +1,7 @@
 package org.bracelet.entity;
 
+import net.sf.json.JSONObject;
+
 import javax.persistence.*;
 
 /**
@@ -199,6 +201,35 @@ public class Food {
         this.retinolEquivalent = 0.0;
         this.sodium = 0.0;
         this.selenium = 0.0;
+    }
+
+    public Food(String jsonString) {
+        JSONObject json = JSONObject.fromString(jsonString);
+        this.heatContent = json.getDouble("heatContent");
+        this.thiamine = json.getDouble("thiamine");
+        this.calcium = json.getDouble("calcium");
+        this.protein = json.getDouble("protein");
+        this.riboflavin = json.getDouble("riboflavin");
+        this.magnesium = json.getDouble("magnesium");
+        this.fat = json.getDouble("fat");
+        this.niacin = json.getDouble("niacin");
+        this.iron = json.getDouble("iron");
+        this.carbohydrate = json.getDouble("carbohydrate");
+        this.vitaminC = json.getDouble("vitaminC");
+        this.manganese = json.getDouble("manganese");
+        this.dietaryFibre = json.getDouble("dietaryFibre");
+        this.vitaminE = json.getDouble("vitaminE");
+        this.zinc = json.getDouble("zinc");
+        this.vitaminA = json.getDouble("vitaminA");
+        this.cholesterol = json.getDouble("cholesterol");
+        this.copper = json.getDouble("copper");
+        this.carotene = json.getDouble("carotene");
+        this.potassium = json.getDouble("potassium");
+        this.phosphorus = json.getDouble("phosphorus");
+        this.retinolEquivalent = json.getDouble("retinolEquivalent");
+        this.sodium = json.getDouble("sodium");
+        this.selenium = json.getDouble("selenium");
+        this.foodType = new FoodType(json.getJSONObject("foodType").toString());
     }
 
     public Long getId() {
@@ -419,35 +450,35 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", heatContent=" + heatContent +
-                ", thiamine=" + thiamine +
-                ", calcium=" + calcium +
-                ", protein=" + protein +
-                ", riboflavin=" + riboflavin +
-                ", magnesium=" + magnesium +
-                ", fat=" + fat +
-                ", niacin=" + niacin +
-                ", iron=" + iron +
-                ", carbohydrate=" + carbohydrate +
-                ", vitaminC=" + vitaminC +
-                ", manganese=" + manganese +
-                ", dietaryFibre=" + dietaryFibre +
-                ", vitaminE=" + vitaminE +
-                ", zinc=" + zinc +
-                ", vitaminA=" + vitaminA +
-                ", cholesterol=" + cholesterol +
-                ", copper=" + copper +
-                ", carotene=" + carotene +
-                ", potassium=" + potassium +
-                ", phosphorus=" + phosphorus +
-                ", retinolEquivalent=" + retinolEquivalent +
-                ", sodium=" + sodium +
-                ", selenium=" + selenium +
-                ", foodType=" + foodType +
-                '}';
+        JSONObject json = new JSONObject();
+        json.put("id", id)
+                .put("name", name)
+                .put("heatContent", heatContent)
+                .put("thiamine", thiamine)
+                .put("calcium", calcium)
+                .put("protein", protein)
+                .put("riboflavin", riboflavin)
+                .put("magnesium", magnesium)
+                .put("fat", fat)
+                .put("niacin", niacin)
+                .put("iron", iron)
+                .put("carbohydrate", carbohydrate)
+                .put("vitaminC", vitaminC)
+                .put("manganese", manganese)
+                .put("dietaryFibre", dietaryFibre)
+                .put("vitaminE", vitaminE)
+                .put("zinc", zinc)
+                .put("vitaminA", vitaminA)
+                .put("cholesterol", cholesterol)
+                .put("copper", copper)
+                .put("carotene", carotene)
+                .put("potassium", potassium)
+                .put("phosphorus", phosphorus)
+                .put("retinolEquivalent", retinolEquivalent)
+                .put("sodium", sodium)
+                .put("selenium", selenium)
+                .put("foodType", JSONObject.fromString(foodType.toString()));
+        return json.toString();
     }
 
     @Override

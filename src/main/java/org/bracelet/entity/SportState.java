@@ -1,5 +1,7 @@
 package org.bracelet.entity;
 
+import net.sf.json.JSONObject;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -29,6 +31,18 @@ public class SportState extends State{
     @Column(name = "kilometre")
     private Double kilometre;
 
+    public SportState() {
+
+    }
+
+    public SportState(String jsonString, User user) {
+        super(jsonString, user);
+        JSONObject json = JSONObject.fromString(jsonString);
+        this.sportType = json.getString("sportType");
+        this.steps = json.getLong("steps");
+        this.kilometre = json.getDouble("kilometre");
+    }
+
     public String getSportType() {
         return sportType;
     }
@@ -55,11 +69,11 @@ public class SportState extends State{
 
     @Override
     public String toString() {
-        return "SportState{" +
-                "sportType='" + sportType + '\'' +
-                ", steps=" + steps +
-                ", kilometre=" + kilometre +
-                "} " + super.toString();
+        JSONObject json = JSONObject.fromString(super.toString());
+        json.put("sportType", sportType)
+                .put("steps", steps)
+                .put("kilometre", kilometre);
+        return json.toString();
     }
 
     @Override

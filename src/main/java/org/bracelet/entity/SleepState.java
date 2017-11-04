@@ -1,5 +1,7 @@
 package org.bracelet.entity;
 
+import net.sf.json.JSONObject;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -17,6 +19,16 @@ public class SleepState extends State {
     @Column(name = "sleepType", length = 20)
     private String sleepType;
 
+    public SleepState() {
+
+    }
+
+    public SleepState(String jsonString, User user) {
+        super(jsonString, user);
+        JSONObject json = JSONObject.fromString(jsonString);
+        this.sleepType = json.getString("sleepType");
+    }
+
     public String getSleepType() {
         return sleepType;
     }
@@ -27,9 +39,9 @@ public class SleepState extends State {
 
     @Override
     public String toString() {
-        return "SleepState{" +
-                "sleepType='" + sleepType + '\'' +
-                "} " + super.toString();
+        JSONObject json = JSONObject.fromString(super.toString());
+        json.put("sleepType", sleepType);
+        return json.toString();
     }
 
     @Override
