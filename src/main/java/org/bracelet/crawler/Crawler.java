@@ -1,7 +1,5 @@
 package org.bracelet.crawler;
 
-import org.bracelet.dao.FoodDao;
-import org.bracelet.dao.impl.FoodDaoImpl;
 import org.bracelet.entity.Food;
 import org.bracelet.entity.FoodType;
 import org.jsoup.Jsoup;
@@ -14,13 +12,8 @@ import java.util.*;
 
 public class Crawler {
 
-    private Map<FoodType, List<Food>> foodTypeListMap;
-
-    private Crawler() {
-        foodTypeListMap = new HashMap<>();
-    }
-
-    private void craw() throws IOException {
+    public static List<Food> craw() throws IOException {
+        Map<FoodType, List<Food>> foodTypeListMap = new HashMap<>();
         String baseUrl = "http://yingyang.118cha.com/";
         Document document = Jsoup.connect(baseUrl)
                 .userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)")
@@ -115,16 +108,10 @@ public class Crawler {
             i++;
         }
         System.out.println("Total foods: " + count);
-
-    }
-
-    public static void main(String[] args) throws IOException {
-        Crawler crawler = new Crawler();
-        crawler.craw();
         List<Food> foods = new ArrayList<>();
-        for (List<Food> foodList : crawler.foodTypeListMap.values()) {
+        for (List<Food> foodList : foodTypeListMap.values()) {
             foods.addAll(foodList);
         }
-        System.out.println("done!");
+        return foods;
     }
 }
