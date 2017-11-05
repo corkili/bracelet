@@ -19,6 +19,7 @@ public class FoodDaoImpl extends DomainDaoImpl<Food, Long> implements FoodDao{
     @SuppressWarnings("unchecked")
     public List<Food> findFoods(boolean fuzzy, List<FoodType> foodTypes, String... params) throws IllegalArgumentException {
         Session session = getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         if (params.length % 2 == 1) {
             throw new IllegalArgumentException("The number of params should be even");
         }
@@ -59,12 +60,15 @@ public class FoodDaoImpl extends DomainDaoImpl<Food, Long> implements FoodDao{
         for (int i = 0; i < foodTypes.size(); i++) {
             query.setParameter("foodType" + i, foodTypes.get(i));
         }
+        List<Food> foods;
         try {
-            return query.list();
+            foods = query.list();
+            transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+            foods = new ArrayList<>();
+            transaction.rollback();
         }
+        return foods;
     }
 
     @Override
