@@ -66,10 +66,12 @@ public class FoodServiceImpl implements FoodService {
             sportLists.add(stateDao.findStates(user, start, end, "sport"));
             sleepLists.add(stateDao.findStates(user, start, end, "sleep"));
         }
-        List<Integer> calorioes = Calculator.calAllCalories(user.getWeight(), user.getHeight(), user.getAge(),
+        List<Integer> calorioesList = Calculator.calAllCalories(user.getWeight(), user.getHeight(), user.getAge(),
                 user.getSex().equals("男") ? Calculator.MALE : Calculator.FEMALE, sportLists, sleepLists);
-        int bmr = Calculator.calBMR(user.getSex().equals("男") ? Calculator.MALE : Calculator.FEMALE,
-                user.getWeight(), user.getHeight(), user.getAge());
+        int calories = Calculator.forecastCalories(user.getWeight(), user.getHeight(), user.getAge(),
+                user.getSex().equals("男") ? Calculator.MALE : Calculator.FEMALE, calorioesList);
+        calories = Calculator.calNeedCalories(calories);
+        // TODO continue to coding
         return null;
     }
 

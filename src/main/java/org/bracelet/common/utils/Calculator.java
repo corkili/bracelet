@@ -114,7 +114,11 @@ public class Calculator {
         return results;
     }
 
-    public static int forecaseCalories(double weight, double height, int age, Sex sex, List<Integer> caloriesList) {
+    public static int calNeedCalories(int calories) {
+        return (int)(Math.round(1.1 * calories));
+    }
+
+    public static int forecastCalories(double weight, double height, int age, Sex sex, List<Integer> caloriesList) {
         byte[] weightBytes = ByteUtils.shortToByte2(Double.valueOf(weight).shortValue());  // 16
         byte[] heightBytes = ByteUtils.shortToByte2(Double.valueOf(height).shortValue());  // 16
         byte[] ageBytes = ByteUtils.shortToByte2(Integer.valueOf(age).shortValue());    // 16
@@ -126,7 +130,7 @@ public class Calculator {
         for (int i = 0; i < input.length; i++) {
             // set input[i]
             byte[] byte8 = { weightBytes[0], weightBytes[1], heightBytes[0],
-                    heightBytes[1], ageBytes[0], ageBytes[1], sexBytes, (byte)(i+1) };
+                    heightBytes[1], ageBytes[0], ageBytes[1], sexBytes, (byte)i };
             byte[] byte64 = ByteUtils.longToByte64(ByteUtils.byte8ToLong(byte8));
             for (int j = 0; j < input[i].length; j++) {
                 input[i][j] = byte64[j];
@@ -142,14 +146,17 @@ public class Calculator {
         bp.train(input, output);
 
         byte[] byte8 = { weightBytes[0], weightBytes[1], heightBytes[0],
-                heightBytes[1], ageBytes[0], ageBytes[1], sexBytes, (byte)(input.length + 1) };
+                heightBytes[1], ageBytes[0], ageBytes[1], sexBytes, (byte)input.length };
         byte[] byte64 = ByteUtils.longToByte64(ByteUtils.byte8ToLong(byte8));
         double[] predictValue = new double[64];
         for (int i = 0; i < predictValue.length; i++) {
             predictValue[i] = byte64[i];
         }
-        bp.predict(predictValue);
-
-        return 0;
+        double[] resultValue = bp.predict(predictValue);
+        byte[] byte32 = new byte[32];
+        for (int i = 0; i < resultValue.length; i++) {
+            byte32[i] = (byte)Math.round(resultValue[i]);
+        }
+        return ByteUtils.byte32ToInt(byte32);
     }
 }

@@ -17,33 +17,24 @@ public class Main {
 				{0,1,1},
 				{1,0,0},
 				{1,0,1},
-				{1,1,0},
-				{1,1,1}
+				{1,1,0}
 		};
 		double [][] Y = {
-				{1, 0, 0, 0, 0, 0, 0, 0},
-				{0, 1, 0, 0, 0, 0, 0, 0},
-				{0, 0, 1, 0, 0, 0, 0, 0},
-				{0, 0, 0, 1, 0, 0, 0, 0},
-				{0, 0, 0, 0, 1, 0, 0, 0},
-				{0, 0, 0, 0, 0, 1, 0, 0},
-				{0, 0, 0, 0, 0, 0, 1, 0},
-				{0, 0, 0, 0, 0, 0, 0, 1}
+				{1, 0, 0, 0, 1, 0, 0, 0},
+				{0, 1, 0, 0, 0, 1, 0, 0},
+				{0, 0, 1, 0, 0, 0, 1, 0},
+				{0, 0, 0, 1, 0, 0, 0, 1},
+				{0, 0, 0, 1, 1, 0, 0, 0},
+				{0, 0, 1, 0, 0, 1, 0, 0},
+				{0, 1, 0, 0, 0, 0, 1, 0}
 		};
-		
+
+		int [] values = { 0x88, 0x44, 0x22, 0x11, 0x18, 0x24, 0x42 };
+
 		bpnn.train(X, Y);
 		
 		for (int i = 0; i < 8; ++ i) {
 			double [] output = bpnn.predict(X[i]);
-//			System.out.println(Arrays.toString(output));
-//			byte[] byte32 = new byte[32];
-//			for (int j = 0; j < 24; j++) {
-//				byte32[j] = 0;
-//			}
-//			for (int j = 0; j < output.length; j++) {
-//				byte32[j + 24] = Double.valueOf(output[j]).byteValue();
-//			}
-//			int pos = ByteUtils.byte32ToInt(byte32);
 			double max = -1;
 			int pos = -1;
 			double value = 0.0;
@@ -53,13 +44,14 @@ public class Main {
 					max = output[j];
 					pos = j;
 				}
-				value += j * output[j];
+				value += values[7-j] * output[j];
+				output[j] = Math.round(output[j]);
 			}
 			System.out.print (X[i][0]);
 			for (int j = 1; j < X[i].length; ++ j) {
 				System.out.print (", " + X[i][j]);
 			}
-			System.out.println(" = " + Math.round(value));
+			System.out.println(" = " + value + " = " + Arrays.toString(output));
 		}
 	}
 }
