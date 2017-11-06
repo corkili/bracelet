@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -47,7 +48,26 @@ public class FoodServiceImpl implements FoodService {
         for (FoodType foodType : user.getLikeFoods()) {
             foods.putAll(allFoods.get(foodType.getId()));
         }
-        List<SportState> sportStates = stateDao.findStates(user, new Date(), new Date(), "sport");
+        // loadStates
+        List<List<SportState>> sportLists = new ArrayList<>();
+        List<List<SleepState>> sleepLists = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date start = new Date();
+        Date end = new Date();
+        for (int i = 0; i < 7; i++) {
+            end.setTime(calendar.getTimeInMillis());
+            calendar.add(Calendar.DATE, -1);
+            start.setTime(calendar.getTimeInMillis());
+            sportLists.add(stateDao.findStates(user, start, end, "sport"));
+            sleepLists.add(stateDao.findStates(user, start, end, "sleep"));
+        }
+        List<Integer> calorioes = Calculator.calAllCalories(user.getWeight(), user.getHeight(), user.getAge(),
+                user.getSex().equals("男") ? Calculator.MALE : Calculator.FEMALE, sportLists, sleepLists);
         int bmr = Calculator.calBMR(user.getSex().equals("男") ? Calculator.MALE : Calculator.FEMALE,
                 user.getWeight(), user.getHeight(), user.getAge());
         return null;

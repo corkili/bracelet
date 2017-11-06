@@ -62,8 +62,8 @@ public enum ActivityType {
     WalkAndRun(670),            // 走跑结合（跑步不超过10分钟）
     Sleep_Pre(174),             // 准备睡觉
     Sleep(-13),                 // 睡觉
-    sitOnly(40),                // 静坐
-    sitForWork(67),             // 坐着工作（办公室工作）
+    SitOnly(40),                // 静坐
+    SitForWork(67),             // 坐着工作（办公室工作）
     TypeWrite(107),             // 写作、文字、打字（坐）
     StandOnly(134),             // 站着
     StandForWork(268),          // 站着工作
@@ -78,5 +78,69 @@ public enum ActivityType {
 
     public double getKcal() {
         return this.kcal;
+    }
+
+    public static ActivityType getWalk(double speed) {
+        speed = Math.round(speed * 10);
+        ActivityType activityType;
+        if (speed <= 32) {
+            activityType = ActivityType.Walk_32;
+        } else if (speed <= 40) {
+            activityType = ActivityType.Walk_40;
+        } else if (speed <= 48) {
+            activityType = ActivityType.Walk_48;
+        } else if (speed <= 56) {
+            activityType = ActivityType.Walk_56;
+        } else if (speed <= 64) {
+            activityType = ActivityType.Walk_64;
+        } else if (speed <= 72) {
+            activityType = ActivityType.Walk_72;
+        } else {
+            activityType = ActivityType.Walk_80;
+        }
+        return activityType;
+    }
+
+    public static ActivityType getRun(double speed) {
+        speed = Math.round(speed * 10);
+        ActivityType activityType;
+        if (speed <= 60) {
+            activityType = ActivityType.Run_60;
+        } else if (speed <= 65) {
+            activityType = ActivityType.Run_65;
+        } else if (speed <= 70) {
+            activityType = ActivityType.Run_70;
+        } else if (speed <= 75) {
+            activityType = ActivityType.Run_75;
+        } else if (speed <= 80) {
+            activityType = ActivityType.Run_80;
+        } else if (speed <= 84) {
+            activityType = ActivityType.Run_84;
+        } else if (speed <= 97) {
+            activityType = ActivityType.Run_97;
+        } else if (speed <= 108) {
+            activityType = ActivityType.Run_108;
+        } else if (speed <= 113) {
+            activityType = ActivityType.Run_113;
+        } else if (speed <= 121) {
+            activityType = ActivityType.Run_121;
+        } else if (speed <= 129) {
+            activityType = ActivityType.Run_129;
+        } else if (speed <= 138) {
+            activityType = ActivityType.Run_138;
+        } else if (speed <= 145) {
+            activityType = ActivityType.Run_145;
+        } else if (speed <= 160) {
+            activityType = ActivityType.Run_160;
+        } else if (speed <= 175) {
+            activityType = ActivityType.Run_175;
+        } else if (speed <= 192) {
+            activityType = ActivityType.Run_192;
+        } else if (speed <= 208) {
+            activityType = ActivityType.Run_208;
+        } else {
+            activityType = ActivityType.Run_224;
+        }
+        return activityType;
     }
 }
