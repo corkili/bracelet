@@ -1,6 +1,6 @@
 package org.bracelet.service.impl;
 
-import org.bracelet.common.utils.Calculator;
+import org.bracelet.common.utils.FoodHelper;
 import org.bracelet.crawler.Crawler;
 import org.bracelet.dao.FoodDao;
 import org.bracelet.dao.StateDao;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -44,9 +43,9 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public Recipe makeRecipeForUser(User user) {
-        Map<Long, Food> foods = new HashMap<>();
+        List<Food> foods = new ArrayList<>();
         for (FoodType foodType : user.getLikeFoods()) {
-            foods.putAll(allFoods.get(foodType.getId()));
+            foods.addAll(allFoods.get(foodType.getId()).values());
         }
         // loadStates
         List<List<SportState>> sportLists = new ArrayList<>();
@@ -66,13 +65,12 @@ public class FoodServiceImpl implements FoodService {
             sportLists.add(stateDao.findStates(user, start, end, "sport"));
             sleepLists.add(stateDao.findStates(user, start, end, "sleep"));
         }
-        List<Integer> calorioesList = Calculator.calAllCalories(user.getWeight(), user.getHeight(), user.getAge(),
-                user.getSex().equals("男") ? Calculator.MALE : Calculator.FEMALE, sportLists, sleepLists);
-        int calories = Calculator.forecastCalories(user.getWeight(), user.getHeight(), user.getAge(),
-                user.getSex().equals("男") ? Calculator.MALE : Calculator.FEMALE, calorioesList);
-        calories = Calculator.calNeedCalories(calories);
-        // TODO continue to coding
-        return null;
+        List<Integer> caloriesList = FoodHelper.calAllCalories(user.getWeight(), user.getHeight(), user.getAge(),
+                user.getSex().equals("男") ? FoodHelper.MALE : FoodHelper.FEMALE, sportLists, sleepLists);
+        int calories = FoodHelper.forecastCalories(user.getWeight(), user.getHeight(), user.getAge(),
+                user.getSex().equals("男") ? FoodHelper.MALE : FoodHelper.FEMALE, caloriesList);
+        calories = FoodHelper.calNeedCalories(calories);
+        return FoodHelper.makeRecipe(foods, calories, user.getAge(), user.getSex().equals("男") ? FoodHelper.MALE : FoodHelper.FEMALE);
     }
 
     private void loadFoods() {
