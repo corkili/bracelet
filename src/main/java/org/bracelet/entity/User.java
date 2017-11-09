@@ -101,9 +101,14 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "friendId")})
     private List<User> friends;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "toUserId")
+    private List<Message> messages;
+
     public User() {
         this.likeFoods = new ArrayList<>();
         this.friends = new ArrayList<>();
+        messages = new ArrayList<>();
         this.weight = 0.0;
         this.height = 0.0;
         this.age = 0;
@@ -140,6 +145,11 @@ public class User {
             user.setAge(friend.getInt("age"));
             user.setPhone(friend.getString("phone"));
             friends.add(user);
+        }
+        this.messages = new ArrayList<>();
+        JSONArray messageArray = json.getJSONArray("messages");
+        for (Iterator it = messageArray.iterator(); it.hasNext(); ) {
+            messages.add(new Message(((JSONObject) it.next()).toString()));
         }
     }
 
@@ -255,6 +265,14 @@ public class User {
         this.friends = friends;
     }
 
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
     @Override
     public String toString() {
         JSONObject json = new JSONObject();
@@ -288,6 +306,12 @@ public class User {
             friendArray.put(u);
         }
         json.put("friends", friendArray);
+
+        JSONArray messageArray = new JSONArray();
+        for (Message message : messages) {
+            messageArray.put(JSONObject.fromString(message.toString()));
+        }
+        json.put("messages", messageArray);
         return json.toString();
     }
 

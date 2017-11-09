@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class FoodDaoImpl extends DomainDaoImpl<Food, Long> implements FoodDao{
+public class FoodDaoImpl extends DomainDaoImpl<Food, Long> implements FoodDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<Food> findFoods(boolean fuzzy, List<FoodType> foodTypes, String... params) throws IllegalArgumentException {

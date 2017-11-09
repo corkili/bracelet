@@ -1,6 +1,7 @@
 package org.bracelet.service;
 
 import org.bracelet.common.model.Result;
+import org.bracelet.entity.Message;
 import org.bracelet.entity.User;
 
 import javax.servlet.http.HttpSession;
