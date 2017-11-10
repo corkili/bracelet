@@ -1,5 +1,6 @@
 package org.bracelet.service.impl;
 
+import org.apache.log4j.Logger;
 import org.bracelet.common.model.Result;
 import org.bracelet.common.session.SessionContext;
 import org.bracelet.common.utils.AgeUtil;
@@ -22,6 +23,8 @@ import java.util.regex.Pattern;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+
+    private Logger logger = Logger.getLogger(UserServiceImpl.class);
 
     private UserDao userDao;
 
@@ -72,6 +75,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result register(User user) {
+        logger.info(user.toString());
         boolean successful = false;
         String message;
         if (StringUtils.isEmpty(user.getPhone())
@@ -94,6 +98,7 @@ public class UserServiceImpl implements UserService {
             }
             user.setRegisterTime(new java.util.Date());
             user.setLastLoginTime(new java.util.Date());
+            user.setPassword(HashUtil.generate(user.getPassword()));
             if (userDao.save(user) == null) {
                 message = "数据库忙，请重试";
             } else {

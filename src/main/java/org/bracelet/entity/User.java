@@ -117,7 +117,16 @@ public class User {
 
     public User(String jsonString) {
         JSONObject json = JSONObject.fromString(jsonString);
-        this.id = json.getLong("id");
+        try {
+            this.id = json.getLong("id");
+        } catch (Exception e) {
+            this.id = null;
+        }
+        try {
+            this.password = json.getString("password");
+        } catch (Exception e) {
+            this.password = "#";
+        }
         this.username = json.getString("username");
         this.name = json.getString("name");
         this.birthday = new Date(json.getLong("birthday"));
@@ -279,6 +288,7 @@ public class User {
         json.put("id", id)
                 .put("username", username)
                 .put("name", name)
+                .put("password", password)
                 .put("sex", sex)
                 .put("birthday", birthday.getTime())
                 .put("age", age)
