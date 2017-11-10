@@ -23,11 +23,12 @@ public class FoodServiceImpl implements FoodService {
 
     private Map<Long, Map<Long, Food>> allFoods;
 
+    private List<FoodType> foodTypes;
+
     public FoodServiceImpl() {
         allFoods = new HashMap<>();
+        foodTypes = new ArrayList<>();
     }
-
-
 
     @Override
     public void updateFood() {
@@ -39,13 +40,16 @@ public class FoodServiceImpl implements FoodService {
         }
     }
 
-
-
     @Override
     public Recipe makeRecipeForUser(User user) {
         List<Food> foods = new ArrayList<>();
         for (FoodType foodType : user.getLikeFoods()) {
             foods.addAll(allFoods.get(foodType.getId()).values());
+        }
+        if (foods.size() == 0) {
+            for (Map<Long, Food> foodMap : allFoods.values()) {
+                foods.addAll(foodMap.values());
+            }
         }
         // loadStates
         List<List<SportState>> sportLists = new ArrayList<>();
@@ -73,6 +77,11 @@ public class FoodServiceImpl implements FoodService {
         return FoodHelper.makeRecipe(foods, calories, user.getAge(), user.getSex().equals("男") ? FoodHelper.MALE : FoodHelper.FEMALE);
     }
 
+    @Override
+    public List<FoodType> getAllFoodTypes() {
+        return foodTypes;
+    }
+
     private void loadFoods() {
         List<Food> foods = foodDao.findFoods(false, new ArrayList<>());
         for (Food food : foods) {
@@ -80,6 +89,9 @@ public class FoodServiceImpl implements FoodService {
             if (!allFoods.containsKey(foodTypeId))
                 allFoods.put(foodTypeId, new HashMap<>());
             allFoods.get(foodTypeId).put(food.getId(), food);
+        }
+        for (Map<Long, Food> foodMap : allFoods.values()) {
+            foodTypes.add(foodMap.values().iterator().next().getFoodType());
         }
     }
 

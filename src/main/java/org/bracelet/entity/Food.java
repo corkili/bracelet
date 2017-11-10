@@ -172,7 +172,7 @@ public class Food {
     /**
      * 食物所属类型
      */
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "foodTypeId")
     private FoodType foodType;
 
@@ -205,6 +205,8 @@ public class Food {
 
     public Food(String jsonString) {
         JSONObject json = JSONObject.fromString(jsonString);
+        this.id = json.getLong("id");
+        this.name = json.getString("name");
         this.heatContent = json.getDouble("heatContent");
         this.thiamine = json.getDouble("thiamine");
         this.calcium = json.getDouble("calcium");

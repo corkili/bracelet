@@ -44,7 +44,7 @@ public class State {
     /**
      * 状态所属用户ID
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
 

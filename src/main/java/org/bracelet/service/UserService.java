@@ -17,7 +17,11 @@ public interface UserService {
 
     User getUser(String phone);
 
-    void modifyUserInformation(User user);
+    Result modifyUserInformation(User user);
 
     Result modifyPassword(String phone, String password);
+
+    Result sendMessage(String content, long fromUserId, long toUserId, long time);
+
+    Result addFriend(long fromUserId, String phone);
 }

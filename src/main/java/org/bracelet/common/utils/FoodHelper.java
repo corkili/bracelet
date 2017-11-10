@@ -359,12 +359,17 @@ public class FoodHelper {
             }
         }
 
+        System.out.println("total food:" + foods.size());
+        System.out.println("foodMap size:" + foodMap.size());
+
         // 添加至食谱
         for (Food food : foodMap.values()) {
             if (food != null) {
                 recipe.addFood(food);
             }
         }
+
+        System.out.println("init recipe size: " + recipe.size());
 
         List<String> removeFoodKeys = new ArrayList<>();
         if (recipe.getProtein() >= protein * 1.3) {
@@ -466,7 +471,7 @@ public class FoodHelper {
         int diffCalories = calories - recipe.getHeatContent();
         int count;
         Food maxHeatFood = null;
-        while (diffCalories < 0) {
+        while (diffCalories < 0 && recipe.size() <= foods.size() * 0.10) {
             count = 0;
             for (Food food : foods) {
                 if (food.getHeatContent() >= diffCalories && !recipe.isExist(food)) {

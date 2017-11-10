@@ -44,7 +44,8 @@ public class SessionInterceptor implements HandlerInterceptor {
         }
 
         if(userId == null) {
-            response.sendRedirect("/no_login");
+            System.out.println("interceptor");
+            response.sendRedirect("/user/no_login");
             return false;
         }
 

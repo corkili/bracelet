@@ -389,7 +389,7 @@ public class Recipe {
         JSONObject json = new JSONObject();
         JSONArray foodArray = new JSONArray();
         for (Food food : foods) {
-            foodArray.put(food.toString());
+            foodArray.put(JSONObject.fromString(food.toString()));
         }
         json.put("foods", foodArray);
         json.put("water", water);

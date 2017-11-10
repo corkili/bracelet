@@ -4,8 +4,10 @@ import org.apache.log4j.Logger;
 import org.bracelet.common.model.Result;
 import org.bracelet.common.session.SessionContext;
 import org.bracelet.common.utils.AgeUtil;
+import org.bracelet.common.utils.FoodHelper;
 import org.bracelet.common.utils.HashUtil;
 import org.bracelet.dao.UserDao;
+import org.bracelet.entity.Message;
 import org.bracelet.entity.User;
 import org.bracelet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,12 @@ public class UserServiceImpl implements UserService {
             if (user == null || !HashUtil.verify(password, user.getPassword())) {
                 message = "用户或密码错误";
             } else {
+                int age = AgeUtil.getAgeByBirth(user.getBirthday());
+                if (age != user.getAge()) {
+                    user.setAge(age);
+                }
+                user.setLastLoginTime(new java.util.Date());
+                userDao.saveOrUpdate(user);
                 userContext.login(user);
                 session.setAttribute(SessionContext.ATTR_USER_ID, String.valueOf(user.getId()));
                 session.setAttribute(SessionContext.ATTR_USER_NAME, user.getUsername());
@@ -64,7 +72,7 @@ public class UserServiceImpl implements UserService {
         Result result = new Result(successful);
         result.setMessage(message);
         result.add("user", user);
-        return null;
+        return result;
     }
 
     @Override
@@ -127,9 +135,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void modifyUserInformation(User user) {
+    public Result modifyUserInformation(User user) {
+        String message = "修改成功";
         userDao.saveOrUpdate(user);
         userContext.update(user);
+        Result result = new Result(true);
+        result.setMessage(message);
+        result.add("user", user);
+        return result;
     }
 
     @Override
@@ -144,12 +157,68 @@ public class UserServiceImpl implements UserService {
         } else {
             user.setPassword(HashUtil.generate(password));
             userDao.saveOrUpdate(user);
+            userContext.update(user);
             successful = true;
             message = "修改密码成功";
         }
         Result result = new Result(successful);
         result.setMessage(message);
         result.add("user", user);
+        return result;
+    }
+
+    @Override
+    public Result sendMessage(String content, long fromUserId, long toUserId, long time) {
+        boolean successful = false;
+        String message;
+        User fromUser = getUser(fromUserId);
+        User toUser = getUser(toUserId);
+        if (fromUser == null || toUser == null) {
+            message = "发送方或接收方有误";
+        } else {
+            Message msg = new Message();
+            msg.setContent(content);
+            msg.setFromUserId(fromUser.getId());
+            msg.setFromUserName(fromUser.getName());
+            msg.setFromUserPhone(fromUser.getPhone());
+            msg.setTime(new java.util.Date(time));
+            toUser.getMessages().add(msg);
+            userDao.saveOrUpdate(toUser);
+            userContext.update(toUser);
+            successful = true;
+            message = "消息发送成功";
+        }
+        Result result = new Result(successful);
+        result.setMessage(message);
+        return result;
+    }
+
+    @Override
+    public Result addFriend(long fromUserId, String phone) {
+        boolean successful = false;
+        String message;
+        User fromUser = getUser(fromUserId);
+        User toUser = getUser(phone);
+        if (fromUser == null || toUser == null) {
+            message = "不存在手机号为" + phone + "的用户";
+        } else {
+            fromUser.getFriends().add(toUser);
+            Message msg = new Message();
+            msg.setContent("用户" + fromUser.getName() + "(" + fromUser.getPhone() + ")已将您添加为好友！");
+            msg.setFromUserId(fromUser.getId());
+            msg.setFromUserName(fromUser.getName());
+            msg.setFromUserPhone(fromUser.getPhone());
+            msg.setTime(new java.util.Date());
+            toUser.getMessages().add(msg);
+            userDao.saveOrUpdate(fromUser);
+            userDao.saveOrUpdate(toUser);
+            userContext.update(fromUser, toUser);
+            successful = true;
+            message = "消息发送成功";
+        }
+        Result result = new Result(successful);
+        result.setMessage(message);
+        result.add("user", fromUser);
         return result;
     }
 

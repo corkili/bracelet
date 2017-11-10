@@ -89,19 +89,19 @@ public class User {
     /**
      * 用户饮食偏好
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_food",
             joinColumns = {@JoinColumn(name = "userId")},
             inverseJoinColumns = {@JoinColumn(name = "foodTypeId")})
     private List<FoodType> likeFoods;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "friends",
             joinColumns = {@JoinColumn(name = "userId")},
             inverseJoinColumns = {@JoinColumn(name = "friendId")})
     private List<User> friends;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "toUserId")
     private List<Message> messages;
 
@@ -131,6 +131,7 @@ public class User {
         this.name = json.getString("name");
         this.birthday = new Date(json.getLong("birthday"));
         this.age = json.getInt("age");
+        this.sex = json.getString("sex");
         this.weight = json.getDouble("weight");
         this.height = json.getDouble("height");
         this.phone = json.getString("phone");
