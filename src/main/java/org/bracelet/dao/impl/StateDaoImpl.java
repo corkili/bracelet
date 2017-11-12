@@ -27,7 +27,7 @@ public class StateDaoImpl extends DomainDaoImpl<State, Long> implements StateDao
             session = getCurrentSession();
             transaction = session.beginTransaction();
             states = session.createQuery(" from State s where s.user = :user and s.status = :status and " +
-                    " (s.startTime between :startTime and :endTime) and (s.endTime between :startTime and :endTime) ")
+                    " ((s.startTime between :startTime and :endTime) or (s.endTime between :startTime and :endTime)) ")
                     .setParameter("user", user).setParameter("status", status)
                     .setParameter("startTime", startTime).setParameter("endTime", endTime)
                     .list();

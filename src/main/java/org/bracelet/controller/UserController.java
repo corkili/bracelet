@@ -91,24 +91,30 @@ public class UserController {
         OutputUtils.print(response, jsonObject.toString());
     }
 
-    @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
-    public void sendMessage(@RequestBody String jsonString, HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/sendMessages", method = RequestMethod.POST)
+    public void sendMessages(@RequestBody String jsonString, HttpServletResponse response) throws IOException {
         logger.info("send message: " + jsonString);
         JSONObject params = JSONObject.fromString(jsonString);
-        Result result = userService.sendMessage(params.getString("content"), params.getLong("fromUserId"),
-                params.getLong("toUserId"), params.getLong("time"));
+        boolean successful = false;
+        String content = params.getString("content");
+        long time = params.getLong("time");
+        User user = userService.getUser(params.getLong("fromUserId"));
+        for (User toUser : user.getFriends()) {
+            successful |= userService.sendMessage(content, user.getId(), toUser.getId(), time).isSuccessful();
+        }
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("resCode", result.isSuccessful() ? ResponseCode.SUCCESSFUL : ResponseCode.ERROR);
-        jsonObject.put("resMsg", result.getMessage());
+        jsonObject.put("resCode", successful ? ResponseCode.SUCCESSFUL : ResponseCode.ERROR);
+        jsonObject.put("resMsg", successful ? "消息发送成功" : "消息发送失败");
+        jsonObject.put("user", JSONObject.fromString(userService.getUser(user.getId()).toString()));
         OutputUtils.print(response, jsonObject.toString());
     }
 
     @RequestMapping(value = "/addFriend", method = RequestMethod.POST)
-    public void addFriend(@RequestBody String jsonString, HttpServletResponse response) throws IOException {
+    public void addFriend(@RequestBody String jsonString, HttpServletResponse response,
+                          @SessionAttribute(SessionContext.ATTR_USER_ID) long userId) throws IOException {
         logger.info("add friend " + jsonString);
         JSONObject params = JSONObject.fromString(jsonString);
-        Result result = userService.sendMessage(params.getString("content"), params.getLong("fromUserId"),
-                params.getLong("toUserId"), params.getLong("time"));
+        Result result = userService.addFriend(userId, params.getString("phone"));
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("resCode", result.isSuccessful() ? ResponseCode.SUCCESSFUL : ResponseCode.ERROR);
         jsonObject.put("resMsg", result.getMessage());

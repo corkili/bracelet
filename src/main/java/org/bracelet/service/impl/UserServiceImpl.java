@@ -183,8 +183,18 @@ public class UserServiceImpl implements UserService {
             msg.setFromUserPhone(fromUser.getPhone());
             msg.setTime(new java.util.Date(time));
             toUser.getMessages().add(msg);
+
+            Message res = new Message();
+            res.setContent("已收到您的消息");
+            res.setFromUserId(toUser.getId());
+            res.setFromUserName(toUser.getName());
+            res.setFromUserPhone(toUser.getPhone());
+            res.setTime(new java.util.Date(time));
+            fromUser.getMessages().add(msg);
+
             userDao.saveOrUpdate(toUser);
-            userContext.update(toUser);
+            userDao.saveOrUpdate(fromUser);
+            userContext.update(toUser, fromUser);
             successful = true;
             message = "消息发送成功";
         }
@@ -214,7 +224,7 @@ public class UserServiceImpl implements UserService {
             userDao.saveOrUpdate(toUser);
             userContext.update(fromUser, toUser);
             successful = true;
-            message = "消息发送成功";
+            message = "添加好友成功";
         }
         Result result = new Result(successful);
         result.setMessage(message);

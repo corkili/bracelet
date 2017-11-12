@@ -47,6 +47,7 @@ public class StateController {
                           @SessionAttribute(SessionContext.ATTR_USER_ID) long userId) throws IOException {
         logger.info("add states: " + jsonString);
         JSONObject jsonObject = new JSONObject();
+        stateService.addStates(userService.getUser(userId), jsonString);
         jsonObject.put("resCode", stateService.addStates(userService.getUser(userId), jsonString) ?
                 ResponseCode.SUCCESSFUL : ResponseCode.ERROR);
         jsonObject.put("resMsg", "成功添加状态");
